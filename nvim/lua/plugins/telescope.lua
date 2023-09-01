@@ -35,9 +35,9 @@ return {
 							-- installing as a dependency of telescope in it's `requirements` and loading this
 							-- extension from there instead of having the separate plugin definition as outlined
 							-- above.
-							["<CR>"] = require("telescope-undo.actions").yank_additions,
+							["<CR>"] = require("telescope-undo.actions").restore,
 							["<S-CR>"] = require("telescope-undo.actions").yank_deletions,
-							["<C-CR>"] = require("telescope-undo.actions").restore,
+							["<C-CR>"] = require("telescope-undo.actions").yank_additions,
 						},
 					},
 				},

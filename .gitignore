@@ -1,0 +1,5 @@
+tmux/plugins
+tmux/*.log
+nvim/lazy-lock.json
+
+

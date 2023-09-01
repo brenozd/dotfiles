@@ -15,17 +15,32 @@ local function get_autocmds()
         {
             "VimEnter",
             function()
-                vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
-            end,
-            descrption = "Changes automatically to execution directory",
-        },
-        {
-            "VimEnter",
-            function()
                 if vim.fn.argc(-1) == 0 then
                     local session_name = get_session_name()
                     require("resession").load(session_name, { dir = "dirsession", silence_errors = true })
-                else
+                    return
+                end
+                local file_specified = false
+
+                -- Loop through the command line arguments
+                for _, arg in ipairs(vim.fn.argv()) do
+                    -- Ignore arguments starting with a dash "-"
+                    if not vim.startswith(arg, "-") then
+                        -- Get the absolute path of the argument
+                        local abs_path = vim.fn.fnamemodify(vim.fn.expand(arg), ":p")
+
+                        -- Check if the file is readable
+                        if vim.fn.filereadable(abs_path) == 1 then
+                            vim.cmd("e" .. vim.fn.fnameescape(abs_path))
+                            file_specified = true
+                        else
+                            print("File does not exist or is not readable: " .. abs_path)
+                        end
+                    end
+                end
+
+                -- If no valid file was specified, create a new empty buffer
+                if not file_specified then
                     vim.cmd(":enew|bd#")
                 end
             end,
@@ -39,28 +54,6 @@ local function get_autocmds()
             end,
             descrption = "Changes automatically to execution directory",
         },
-        {
-            "LspAttach",
-            function(ev)
-                -- Enable completion triggered by <c-x><c-o>
-                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-                -- Buffer local mappings.
-                -- See `:help vim.lsp.*` for documentation on any of the below functions
-                local opts = { buffer = ev.buf }
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "A", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "<C-a>", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "td", vim.lsp.buf.type_definition, opts)
-                vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>")
-                vim.keymap.set("n", "<C-f>", function()
-                    vim.lsp.buf.format({ async = true })
-                end, opts)
-            end,
-            description = "Enable LSP keymaps on LSP Attach",
-        }
     }
 end
 

@@ -2,7 +2,7 @@ return {
 	"s1n7ax/nvim-window-picker",
 	name = "window-picker",
 	event = "VeryLazy",
-	version = "2.*",
+	version = "2.0.1",
 	config = function()
 		local window_picker = require("window-picker")
 		window_picker.setup({

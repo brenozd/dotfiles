@@ -3,15 +3,14 @@ M = {}
 local toolbox = require("legendary.toolbox")
 local function get_keymaps()
 	return {
-        -- Utils
+		-- Utils
 		{
 			"<leader>q",
 			function()
-                vim.cmd("bd")
+				vim.cmd("bd")
 			end,
 			description = "Close buffer",
 		},
-		-- Movement
 		{
 			"<leader>j",
 			function()
@@ -192,14 +191,7 @@ local function get_keymaps()
 		{
 			"<leader>m",
 			function()
-				local success, picker = pcall(require, "window-picker")
-				local picked_window = picker.pick_window({ hint = "floating-big-letter" })
-				if not success then
-					print(
-						"You'll need to install window-picker to use this command: https://github.com/s1n7ax/nvim-window-picker"
-					)
-					return
-				end
+				local picked_window = require("window-picker").pick_window()
 				if picked_window then
 					vim.api.nvim_set_current_win(picked_window)
 				end

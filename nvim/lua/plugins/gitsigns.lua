@@ -44,5 +44,6 @@ return {
                 enable = false,
             },
         })
+        require("scrollbar.handlers.gitsigns").setup()
     end,
 }

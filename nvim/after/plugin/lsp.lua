@@ -20,20 +20,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 require("glance")
-
-mason.setup({
-    ui = {
-        icons = {
-            package_installed = "",
-            package_pending = "󱍷",
-            package_uninstalled = "",
-        },
-    },
-})
 
 mason_lspconfig.setup()
 

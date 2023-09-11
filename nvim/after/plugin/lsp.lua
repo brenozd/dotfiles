@@ -62,6 +62,11 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
+local mason_null_ls = require("mason-null-ls")
+mason_null_ls.setup({
+    handlers = {},
+})
+
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
@@ -73,3 +78,4 @@ null_ls.setup({
         null_ls.builtins.completion.spell,
     },
 })
+

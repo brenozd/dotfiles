@@ -31,6 +31,9 @@ function pathadd() {
     esac; 
 }
 
+function open() {
+    nohup nautilus -w "$1" > /dev/null 2>&1 &
+}
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete aws)

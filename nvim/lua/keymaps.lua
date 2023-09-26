@@ -126,7 +126,7 @@ local function get_keymaps()
 		},
 		{
 			"<leader>fs",
-			":Telescope lsp_workspace_symbols<CR>",
+			":Telescope lsp_dynamic_workspace_symbols<CR>",
 			description = "Find symbols in workspace",
 			opts = { silent = true },
 		},

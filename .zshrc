@@ -34,15 +34,30 @@ function pathadd() {
 function open() {
     nohup nautilus -w "$1" > /dev/null 2>&1 &
 }
+
+
+# Path
+pathadd "$HOME/.cargo/bin"
+pathadd "/usr/local/go/bin"
+pathadd "$HOME/.local/bin"
+# pathadd "$(ruby -r rubygems -e 'puts Gem.user_dir')"
+
+# Initializing plugins
+plugins=(
+    git 
+    zoxide 
+    fast-syntax-highlighting 
+    zsh-autocomplete 
+    zsh-syntax-highlighting 
+    zsh-autosuggestions 
+    aws
+)
+
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete aws)
 source $ZSH/oh-my-zsh.sh
 
-pathadd "$HOME/.cargo/bin"
-pathadd "$HOME/go/bin"
-pathadd "$HOME/.local/bin"
-
+# Functions and aliases
 export FZF_DEFAULT_OPTS="--cycle --no-sort --reverse --border=rounded --header-first --prompt='󰍉 ' --pointer='' --marker='󰆤 '" 
 
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
@@ -58,3 +73,16 @@ alias ll="exa -lah --icons"
 alias cat="bat"
 alias tree="exa -Tah --icons"
 alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/home/brenozd/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/brenozd/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<

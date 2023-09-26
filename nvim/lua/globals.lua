@@ -1,8 +1,9 @@
 vim.g.autochdir = true
 vim.opt.list = true
 vim.opt.clipboard = "unnamedplus"
-vim.g.textwidth = 128
-vim.opt.wrapmargin = vim.g.textwidth
+vim.g.textwidth = 160
+-- vim.opt.wrapmargin = vim.g.textwidth
+vim.opt.wrap = true 
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.nu = true
@@ -13,7 +14,6 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false

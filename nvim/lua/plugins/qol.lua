@@ -15,7 +15,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		config = function() end,
+		main = "ibl",
 	},
 	{
 		"willothy/moveline.nvim",
@@ -34,5 +34,22 @@ return {
 	{
 		"stevearc/stickybuf.nvim",
 		config = function() end,
+	},
+	{
+		"yamatsum/nvim-cursorline",
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"smjonas/inc-rename.nvim",
+	},
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+		lazy = false,
 	},
 }

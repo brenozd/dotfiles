@@ -84,9 +84,9 @@ cmp.setup({
 				return true
 			end,
 		},
+		{ name = "luasnip", option = { show_autosnippets = true } },
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp_document_symbol" },
-		{ name = "luasnip" }, -- For luasnip users
 		{ name = "nvim_lsp_signature_help" },
 	}),
 	-- Disable completion on comment
@@ -100,10 +100,12 @@ cmp.setup({
 	end,
 	sorting = {
 		comparators = {
-			require("cmp-under-comparator").under,
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.scopes,
+			require("cmp-under-comparator").under,
 			cmp.config.compare.kind,
 			cmp.config.compare.sort_text,
 			cmp.config.compare.length,

@@ -7,15 +7,17 @@ require("better_escape").setup({
 	end,
 })
 
-local indent_blankline = require("indent_blankline")
-indent_blankline.setup({
-	space_char_blankline = " ",
-	show_current_context = true,
-	show_current_context_start = true,
-	buftype_exclude = { "neo-tree", "neo-tree-popup" },
-	filetype_exclude = { "dashboard" },
+require("ibl").setup({
+	indent = {
+		char = "",
+		tab_char = { "" },
+		smart_indent_cap = true,
+		priority = 2,
+	},
 })
 
+require("inc_rename").setup()
+require("nvim-cursorline").setup()
 require("mini.bufremove").setup()
 require("colorizer").setup()
 require("stickybuf").setup()

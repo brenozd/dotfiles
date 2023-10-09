@@ -119,12 +119,6 @@ local function get_keymaps()
 			opts = { silent = true },
 		},
 		{
-			"<leader>c",
-			":Telescope neoclip<CR>",
-			description = "Show clipboard history",
-			opts = { silent = true },
-		},
-		{
 			"<leader>fs",
 			":Telescope lsp_dynamic_workspace_symbols<CR>",
 			description = "Find symbols in workspace",

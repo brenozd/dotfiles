@@ -38,7 +38,9 @@ mason_lspconfig.setup_handlers({
 
     ["lua_ls"] = function()
         capabilities = capabilities
-        require("neodev").setup()
+        require("neodev").setup({
+            library = { plugins = { "nvim-dap-ui" }, types = true },
+        })
         lspconfig["lua_ls"].setup({
             settings = {
                 Lua = {

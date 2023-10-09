@@ -15,8 +15,12 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets", "honza/vim-snippets" },
-		version = "1.2.*",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"honza/vim-snippets",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		version = "2.*",
 		build = "make install_jsregexp",
 	},
 }

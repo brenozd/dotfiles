@@ -53,9 +53,13 @@ plugins=(
     aws
 )
 
-eval "$(zoxide init zsh)"
+autoload -Uz compinit
+# eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 eval "$(direnv hook zsh)"
 source $ZSH/oh-my-zsh.sh
+compinit -i -u
+zstyle ':completion:*' completer _expand _expand_alias _complete _correct _ignored _approximate
 
 # Functions and aliases
 export FZF_DEFAULT_OPTS="--cycle --no-sort --reverse --border=rounded --header-first --prompt='󰍉 ' --pointer='' --marker='󰆤 '" 

@@ -60,10 +60,4 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-	{
-		"dnlhc/glance.nvim",
-		lazy = true,
-		priority = 900,
-		config = function() end,
-	},
 }

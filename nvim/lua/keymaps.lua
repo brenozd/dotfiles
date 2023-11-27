@@ -133,15 +133,6 @@ local function get_keymaps()
 				silent = true,
 			},
 		},
-		--IncRename
-		{
-			"<leader>rn",
-			function()
-				return ":IncRename " .. vim.fn.expand("<cword>")
-			end,
-			description = "Incremental rename",
-			opts = { silent = true, expr = true },
-		},
 		--LazyGit
 		{
 			"<leader>y",

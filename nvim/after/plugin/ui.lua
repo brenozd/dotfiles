@@ -1,3 +1,6 @@
+require("scrollbar.handlers.gitsigns").setup()
+require("hlslens").setup()
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
@@ -283,18 +286,3 @@ require("gitsigns").setup({
 		enable = false,
 	},
 })
-require("scrollbar.handlers.gitsigns").setup()
-
-require("glance").setup({
-	hooks = {
-		before_open = function(results, open, jump, method)
-			if #results == 1 then
-				jump(results[1]) -- argument is optional
-			else
-				open(results) -- argument is optional
-			end
-		end,
-	},
-})
-
-require("hlslens").setup()

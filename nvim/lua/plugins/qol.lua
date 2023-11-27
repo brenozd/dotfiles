@@ -45,11 +45,12 @@ return {
 		},
 	},
 	{
-		"smjonas/inc-rename.nvim",
-	},
-	{
 		"numToStr/Comment.nvim",
 		opts = {},
 		lazy = false,
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
 	},
 }

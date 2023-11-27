@@ -1,6 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="gozilla"
+#ZSH_THEME="gozilla"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 function assume-role() {
     OUT=$(aws sts assume-role --role-arn $1 --role-session-name $2)
@@ -32,7 +33,7 @@ function pathadd() {
 }
 
 function open() {
-    nohup nautilus -w "$1" > /dev/null 2>&1 &
+    nautilus -w "$1" > /dev/null 2>&1 & disown
 }
 
 
@@ -77,6 +78,11 @@ alias ll="exa -lah --icons"
 alias cat="bat"
 alias tree="exa -Tah --icons"
 alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+alias kubectx="kubectl ctx"
+alias kubens="kubectl ns"
+alias vim="nvim"
+alias clc="clipcopy"
+alias clp="clippaste"
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!

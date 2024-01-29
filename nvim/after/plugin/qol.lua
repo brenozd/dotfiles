@@ -22,7 +22,7 @@ require("ibl").setup({
 })
 
 -- UFO Setup
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
@@ -59,3 +59,6 @@ require("ufo").setup({
   open_folder_hl_timeout = 0,
 	fold_virt_text_handler = handler,
 })
+
+require("leap").add_default_mappings()
+-- require("harpoon").setup()

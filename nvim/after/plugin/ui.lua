@@ -194,6 +194,17 @@ noice.setup({
 
 local telescope = require("telescope")
 telescope.setup({
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_mru = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        },
+      },
+    },
+  },
 	extensions = {
 		fzf = {
 			fuzzy = true,
@@ -223,6 +234,7 @@ telescope.load_extension("fzf")
 telescope.load_extension("lazygit")
 telescope.load_extension("noice")
 telescope.load_extension("undo")
+telescope.load_extension('harpoon')
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()

@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gt", "<CMD>Lspsaga goto_type_definitions<CR>", opts)
 		vim.keymap.set("n", "gf", "<CMD>Lspsaga finder ref+def+imp<CR>", opts)
 		vim.keymap.set("n", "ga", "<CMD>Lspsaga code_action<CR>")
+		vim.keymap.set("n", "gr", "<CMD>Lspsaga rename<CR>")
 		vim.keymap.set("n", "A", "<CMD>Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "<C-a>", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "<C-f>", function()
@@ -75,6 +76,7 @@ mason_null_ls.setup({
 local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
+    null_ls.builtins.formatting.autopep8,
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.prettier,

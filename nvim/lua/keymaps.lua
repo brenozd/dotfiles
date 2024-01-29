@@ -124,10 +124,9 @@ local function get_keymaps()
 			description = "Find symbols in workspace",
 			opts = { silent = true },
 		},
-		--ToggleTerm
 		{
 			"<leader>t",
-			":ToggleTerm direction=float<CR>",
+			":Lspsaga term_toggle<CR>",
 			description = "Show terminal",
 			opts = {
 				silent = true,
@@ -183,6 +182,14 @@ local function get_keymaps()
 			end,
 			description = "Pick window",
 			opts = {},
+		},
+		-- Harpoon
+		{
+			"<C-h>",
+			function()
+				require("harpoon"):list():append()
+			end,
+			description = "Append harpoon mark",
 		},
 		--Trouble
 		{

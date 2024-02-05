@@ -26,9 +26,9 @@ return {
 			})
 		end,
 	},
-	{
-		"p00f/clangd_extensions.nvim",
-	},
+	-- {
+	-- 	"p00f/clangd_extensions.nvim",
+	-- },
 	{ -- Easy lua plugin development
 		"folke/neodev.nvim",
 	},

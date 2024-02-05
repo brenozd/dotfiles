@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 #ZSH_THEME="gozilla"
@@ -41,6 +48,8 @@ function open() {
 pathadd "$HOME/.cargo/bin"
 pathadd "/usr/local/go/bin"
 pathadd "$HOME/.local/bin"
+pathadd "${KREW_ROOT:-$HOME/.krew}/bin"
+pathadd "/opt/gradle-8.4/bin"
 # pathadd "$(ruby -r rubygems -e 'puts Gem.user_dir')"
 
 # Initializing plugins
@@ -73,10 +82,10 @@ alias findtext="rg --smart-case --field-match-separator ' ' --line-number --with
 alias ff=findfiles
 alias ft=findtext
 alias cd="z"
-alias ls="exa --icons"
-alias ll="exa -lah --icons"
+alias ls="eza --icons"
+alias ll="eza -lah --icons"
 alias cat="bat"
-alias tree="exa -Tah --icons"
+alias tree="eza -Tah --icons"
 alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 alias kubectx="kubectl ctx"
 alias kubens="kubectl ns"
@@ -96,3 +105,7 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source "$HOME/.cargo/env"

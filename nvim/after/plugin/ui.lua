@@ -52,7 +52,7 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSi
 
 neotree.setup({
 	-- log_level = "trace",
-	log_to_file = true,
+	log_to_file = false,
 	popup_border_style = "rounded",
 	enable_git_status = true,
 	enable_diagnostics = true,
@@ -61,7 +61,7 @@ neotree.setup({
 	open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
 	name = {
 		trailing_slash = true,
-		use_git_status_colors = false,
+		use_git_status_colors = true,
 		highlight = "NeoTreeFileName",
 	},
 	sources = { "filesystem" },
@@ -126,25 +126,25 @@ neotree.setup({
 		},
 	},
 	icon = {
-		folder_closed = "󰉋",
-		folder_open = "󰝰",
-		folder_empty = "󱧸",
-		default = "󰈔",
+		folder_closed = "󰉋 ",
+		folder_open = "󰝰 ",
+		folder_empty = "󱧸 ",
+		default = "󰈔 ",
 		highlight = "NeoTreeFileIcon",
 	},
 	git_status = {
 		symbols = {
 			-- Change type
-			added = "󰐗", -- or "✚", but this is redundant info if you use git_status_colors on the name
-			modified = "󱍷", -- or "", but this is redundant info if you use git_status_colors on the name
-			deleted = "󰚃", -- this can only be used in the git_status source
-			renamed = "󰛿", -- this can only be used in the git_status source
+			added = "󰐗 ", -- or "✚", but this is redundant info if you use git_status_colors on the name
+			modified = "󱍷 ", -- or "", but this is redundant info if you use git_status_colors on the name
+			deleted = "󰚃 ", -- this can only be used in the git_status source
+			renamed = "󰛿 ", -- this can only be used in the git_status source
 			-- Status type
-			untracked = "󰋗",
-			ignored = "󱑙",
-			unstaged = "󰀨",
-			staged = "󰗠",
-			conflict = "",
+			untracked = "󰋗 ",
+			ignored = "󱑙 ",
+			unstaged = "󰀨 ",
+			staged = "󰗠 ",
+			conflict = " ",
 		},
 	},
 	modified = {
@@ -257,44 +257,46 @@ require("scrollbar").setup({
 	},
 })
 
-require("gitsigns").setup({
-	signs = {
-		add = { text = "│" },
-		change = { text = "│" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~" },
-		untracked = { text = "┆" },
-	},
-	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-	watch_gitdir = {
-		follow_files = true,
-	},
-	attach_to_untracked = true,
-	current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-	current_line_blame_opts = {
-		virt_text = true,
-		virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-		delay = 1000,
-		ignore_whitespace = false,
-	},
-	current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
-	sign_priority = 6,
-	update_debounce = 100,
-	status_formatter = nil, -- Use default
-	max_file_length = 40000, -- Disable if file is longer than this (in lines)
-	preview_config = {
-		-- Options passed to nvim_open_win
-		border = "single",
-		style = "minimal",
-		relative = "cursor",
-		row = 0,
-		col = 1,
-	},
-	yadm = {
-		enable = false,
-	},
-})
+require('gitsigns').setup {
+  signs = {
+    add          = { text = '󰐕 ' },
+    change       = { text = '󰦒 ' },
+    delete       = { text = '󰆴 ' },
+    topdelete    = { text = '󰠙 ' },
+    changedelete = { text = '󱕖 ' },
+    untracked    = { text = '󱈸 ' },
+  },
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  attach_to_untracked = false,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+}

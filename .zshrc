@@ -40,7 +40,8 @@ function pathadd() {
 }
 
 function open() {
-    nautilus -w "$1" > /dev/null 2>&1 & disown
+  _folder=${1:-$PWD}
+  xdg-open "$_folder"
 }
 
 
@@ -60,16 +61,21 @@ plugins=(
     zsh-autocomplete 
     zsh-syntax-highlighting 
     zsh-autosuggestions 
+    fzf-tab
     aws
+    autoupdate
 )
 
+source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit
-# eval "$(zoxide init zsh)"
+compinit -i -u
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(direnv hook zsh)"
-source $ZSH/oh-my-zsh.sh
-compinit -i -u
-zstyle ':completion:*' completer _expand _expand_alias _complete _correct _ignored _approximate
+zstyle ':completion:*' completer _extensions _expand _expand_alias _complete _approximate _correct _ignored 
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' menu select
 
 # Functions and aliases
 export FZF_DEFAULT_OPTS="--cycle --no-sort --reverse --border=rounded --header-first --prompt='󰍉 ' --pointer='' --marker='󰆤 '" 
@@ -90,6 +96,7 @@ alias nvidia="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 alias kubectx="kubectl ctx"
 alias kubens="kubectl ns"
 alias vim="nvim"
+alias man="batman"
 alias clc="clipcopy"
 alias clp="clippaste"
 
